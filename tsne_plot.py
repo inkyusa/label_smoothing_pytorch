@@ -2,6 +2,7 @@ import numpy as np
 import argparse
 import matplotlib.pyplot as plt
 from sklearn.manifold import TSNE
+import matplotlib.cm as cm
 
 parser = argparse.ArgumentParser(description='CIFAR10')
 parser.add_argument("--model", type=str, default='ResNet18')
@@ -21,7 +22,8 @@ print('feature shape: ', feature.shape)
 tsne = TSNE(n_components=2, init='pca', random_state=0)
 output_2d = tsne.fit_transform(feature)
 plt.rcParams['figure.figsize'] = 10, 10
-plt.scatter(output_2d[:, 0], output_2d[:, 1], c= target[:,0])
+#plt.scatter(output_2d[:, 0], output_2d[:, 1], c= target[:,0])
+plt.scatter(output_2d[:, 0], output_2d[:, 1], c=target[:, 0], cmap='jet')
 plt.title(f"Validation {arch} tsne")
 plt.savefig(f'./png/{arch}_feature_2d.png', bbox_inches='tight')
 plt.show()

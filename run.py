@@ -92,14 +92,23 @@ data = {
     )
 }
 
+# loaders = {
+#     'train': DataLoader(data['train'], batch_size=128, shuffle=True,
+#                         num_workers=10, pin_memory=True,
+#                         drop_last=True),
+#     'valid': DataLoader(data['valid'], batch_size=128,
+#                         num_workers=10, pin_memory=True,
+#                         drop_last=False)
+# }
+
 loaders = {
-    'train': DataLoader(data['train'], batch_size=128, shuffle=True,
-                        num_workers=10, pin_memory=True,
-                        drop_last=True),
-    'valid': DataLoader(data['valid'], batch_size=128,
-                        num_workers=10, pin_memory=True,
-                        drop_last=False)
-}
+        'train': DataLoader(data['train'], batch_size=2048, shuffle=True,
+                            num_workers=10, pin_memory=True,
+                            drop_last=True),
+        'valid': DataLoader(data['valid'], batch_size=2048,
+                            num_workers=10, pin_memory=True,
+                            drop_last=False)
+    }
 best_acc = 0.0
 for epoch in range(1, epochs + 1):
     train_log = train(loaders['train'])
